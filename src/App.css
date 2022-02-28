@@ -20,9 +20,9 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
-.container {
+.app-container {
   margin: 30px auto;
-  width: 350px;
+  width: 500px;
 }
 
 h1 {

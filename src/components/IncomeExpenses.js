@@ -1,7 +1,6 @@
 import React from "react";
 
-class IncomeExpenses extends React.Component {
-    render() {
+function IncomeExpenses() {
         return(
         <div className="inc-exp-container">
             <div>
@@ -13,7 +12,6 @@ class IncomeExpenses extends React.Component {
                 <p className="money minus">-$0.00</p>
             </div>
         </div>)
-    }
 }
 
 export default IncomeExpenses;

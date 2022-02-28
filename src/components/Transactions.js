@@ -1,7 +1,6 @@
 import React from "react";
 
-class Transactions extends React.Component {
-    render() {
+function Transactions() {
         return(
             <div className="transactions">
                 <h3>History</h3>
@@ -15,7 +14,6 @@ class Transactions extends React.Component {
                 </ul>
             </div>
         )
-    }
 }
 
 export default Transactions;
