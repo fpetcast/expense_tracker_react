@@ -1,0 +1,13 @@
+{
+    "transactions" : [
+        { "id": 1, "text": "Flower", "amount": -40, "date": "01/10/2022", "filtered": true },
+        { "id": 2, "text": "Salary", "amount": 300, "date": "02/05/2022", "filtered": true },
+        { "id": 3, "text": "Book", "amount": -10, "date": "02/24/2022", "filtered": true },
+        { "id": 4, "text": "Camera", "amount": 150, "date": "02/25/2022", "filtered": true }
+    ],
+    "rangeOptions" : [
+        {"id": 1, "number": 0, "text": "..."},
+        {"id": 2, "number": 7, "text": "weekly"},
+        {"id": 3, "number": 30, "text": "monthly"}
+    ]
+}

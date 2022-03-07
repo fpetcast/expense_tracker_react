@@ -11,6 +11,35 @@ export default (state, action) => {
           ...state,
           transactions: [action.payload,...state.transactions]
         }
+      case 'FILTER_TRANSACTIONS':
+        return {
+          ...state,
+          transactions: state.transactions.map((transaction) => {
+            if (Date.parse(transaction.date) >= action.payload.endRangeDate && Date.parse(transaction.date) <= action.payload.today) {
+              transaction.filtered = true;
+            } else {
+              transaction.filtered = false;
+            }
+            if (action.payload.resetFilters) {
+              transaction.filtered = true;
+            }
+            return transaction
+          } 
+          )
+        }
+        // case 'REMOVE_FILTERS':
+        //   return {
+        //     ...state,
+        //     transactions: state.transactions.map((transaction) => {
+        //       if (Date.parse(transaction.date) >= action.payload.endRangeDate && Date.parse(transaction.date) <= action.payload.today) {
+        //         transaction.filtered = true;
+        //       } else {
+        //         transaction.filtered = false;
+        //       }
+        //       return transaction
+        //     } 
+        //     )
+        //   }
       default:
         return state;
     }
