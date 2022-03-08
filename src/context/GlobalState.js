@@ -1,4 +1,4 @@
-import React , {createContext , useReducer} from "react";
+import React , {createContext , useReducer, useEffect} from "react";
 import AppReducer from './AppReducer';
 import data from '../data/transactions.json';
 
@@ -26,12 +26,18 @@ const dispatchStateContext = createContext(undefined);
 export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, data);
 
-    // data.transactions.forEach(transaction => {
-    //   console.log(transaction.date)
-    //   console.log(Date.parse(transaction.date));
-    // });
+    useEffect(() => {
+      let storedTransactions = localStorage.getItem("transactions");
+      console.log(JSON.parse(storedTransactions));
+      dispatch({
+        type:'GET_TRANSACTIONS',
+        payload: JSON.parse(storedTransactions)
+      })
+      return () => {
+        
+      }
+    }, [])
 
-    console.log(state.transactions);
 
     //global actions on state
     function deleteTransaction(id) {
@@ -43,6 +49,7 @@ export const GlobalProvider = ({ children }) => {
 
 
     function addTransaction(transaction) {
+      
       dispatch({
         type: 'ADD_TRANSACTION',
         payload: transaction,
@@ -67,12 +74,21 @@ export const GlobalProvider = ({ children }) => {
       })
     }
 
+    function searchTransaction(transaction) {
+      // console.log(transaction.text);
+      dispatch({
+        type: 'SEARCH_TRANSACTION',
+        payload: transaction,
+      })
+    }
+
     return (<GlobalContext.Provider value={{
         transactions: state.transactions,
         rangeOptions: state.rangeOptions,
         deleteTransaction: deleteTransaction,
         addTransaction: addTransaction,
-        dateFilter: dateFilter
+        dateFilter: dateFilter,
+        searchTransaction: searchTransaction
       }}>
         {children}
       </GlobalContext.Provider>);

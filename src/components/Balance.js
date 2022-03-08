@@ -28,7 +28,7 @@ function Balance() {
    
     return (
       <div className="balance-container">
-        <div className="col"><span className="num amount">{totalAmount} €</span> <span className="label">total balance</span></div>
+        <div className="col balance"><span className="num amount">{totalAmount} €</span> <span className="label">total balance</span></div>
         <div className="col ranges">
           <select name="date-ranges" onChange={getRange} id="date-ranges" className="num range">
             {ranges}

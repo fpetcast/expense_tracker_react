@@ -16,7 +16,9 @@ function AddTransaction() {
         addTransaction({
             id: Math.floor(Math.random() * 100000000),
             text: titleInput.current.value,
-            amount: parseInt(amountInput.current.value)
+            amount: parseInt(amountInput.current.value),
+            date: new Date(),
+            filtered: true
         })
     }
 
