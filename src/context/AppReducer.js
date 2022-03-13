@@ -20,7 +20,29 @@ export default (state, action) => {
           ...state,
           transactions: [action.payload,...state.transactions]
         }
-      case 'FILTER_TRANSACTIONS':
+      case 'TOOL_ACTION':
+         console.log('TOOL_ACTION');
+          return {
+            ...state,
+            tools: state.tools.map(tool => {
+              if (tool.type == action.payload && tool.type == 'add') {
+                tool.showModal = true
+              }
+              return tool;
+            })
+      }
+      case 'CLOSE_MODAL':
+        console.log('CLOSE_MODAL');
+         return {
+           ...state,
+           tools: state.tools.map(tool => {
+             if (tool.type == action.payload && tool.type == 'add') {
+               tool.showModal = false
+             }
+             return tool;
+           })
+     }
+      case 'DATE_FILTER_TRANSACTIONS':
         return {
           ...state,
           transactions: state.transactions.map((transaction) => {
@@ -46,26 +68,47 @@ export default (state, action) => {
               } else {
                 transaction.filtered = false;
               }
-              // if (action.payload.resetFilters) {
-              //   transaction.filtered = true;
-              // }
               return transaction
             } 
             )
           }
-        // case 'REMOVE_FILTERS':
-        //   return {
-        //     ...state,
-        //     transactions: state.transactions.map((transaction) => {
-        //       if (Date.parse(transaction.date) >= action.payload.endRangeDate && Date.parse(transaction.date) <= action.payload.today) {
-        //         transaction.filtered = true;
-        //       } else {
-        //         transaction.filtered = false;
-        //       }
-        //       return transaction
-        //     } 
-        //     )
-        //   }
+          case 'BTN_FILTER_TRANSACTIONS':
+            return {
+              ...state,
+              transactions: state.transactions.map((transaction) => {
+                switch (action.payload.type) {
+                  case 'Income':
+                  console.log('incomes filter');
+                  if (transaction.amount > 0) {
+                    transaction.filtered = true;
+                  } else {
+                    transaction.filtered = false;
+                  }
+                  break;
+                  case 'Expense':
+                  console.log('expense filter');
+                  if (transaction.amount < 0) {
+                    transaction.filtered = true;
+                  } else {
+                    transaction.filtered = false;
+                  }
+                  default:
+                    transaction.filter = true;
+                    break;
+                }
+                return transaction
+              } 
+              )
+            }
+        case 'REMOVE_FILTERS':
+          return {
+            ...state,
+            transactions: state.transactions.map((transaction) => {
+              transaction.filtered = true;
+              return transaction
+            } 
+            )
+          }
       default:
         return state;
     }

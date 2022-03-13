@@ -1,20 +1,21 @@
 import React, {useContext} from "react";
 import { GlobalContext } from "../context/GlobalState";
+import Transaction from "./Transaction";
 
 function Transactions() {
-        const {transactions, deleteTransaction} = useContext(GlobalContext);
+        const {transactions} = useContext(GlobalContext);
 
-        const transaction = transactions.filter(transaction => transaction.filtered == true).map((transaction) =>
-        <li key={transaction.id} className={transaction.amount > 0 ? "plus" : "minus"}>
-        {transaction.text} <span>{transaction.amount}€</span><button className="delete-btn" onClick={() => deleteTransaction(transaction.id)}>x</button>
+        const History = transactions.filter(transaction => transaction.filtered == true).map((transaction) =>
+        <li key={transaction.id} className={transaction.amount > 0 ? "transaction plus" : "transaction minus"}>
+        <Transaction transaction={transaction} />
         </li>
         );
 
         return(
             <div className="transactions">
                 <h3>History</h3>
-                <ul className="list">
-                    {transaction}
+                <ul className="history">
+                    {History}
                 </ul>
             </div>
         )

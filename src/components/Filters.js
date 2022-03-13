@@ -1,8 +1,9 @@
 import React, {useContext} from "react";
 import { GlobalContext } from "../context/GlobalState";
+import Button from "../atoms/Button";
 
-function IncomeExpenses() {
-        const {transactions} = useContext(GlobalContext);
+function Filters() {
+        const {transactions, filters} = useContext(GlobalContext);
 
         const amounts = transactions.map(transaction => transaction.amount)
 
@@ -16,16 +17,14 @@ function IncomeExpenses() {
         .reduce((acc, item) => (acc += item),0) * -1
         .toFixed(2);
 
+        const filterBtns = filters.map((filter) => 
+            <Button key={filter.id} type={filter.type} text={filter.text} class="filter-btn"/>
+        )
+
         return(
-        <div className="inc-exp-container">
-            <div>
-                <button>Income</button>
-            </div>
-            <div>
-                <h4>Expense</h4>
-                <p className="money minus">-{totalExpense}€</p>
-            </div>
+        <div className="filters-container">
+            {filterBtns}
         </div>)
 }
 
-export default IncomeExpenses;
+export default Filters;

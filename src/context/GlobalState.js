@@ -1,6 +1,6 @@
 import React , {createContext , useReducer, useEffect} from "react";
 import AppReducer from './AppReducer';
-import data from '../data/transactions.json';
+import data from '../data/config.json';
 
 //initial state
 // const obj_json = JSON.parse(data);
@@ -26,9 +26,12 @@ const dispatchStateContext = createContext(undefined);
 export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, data);
 
+    console.log(state.tools);
+
+    //RETRIEVE TRANSACTIONS FOR CURRENT LOCAL STORAGE USER
     useEffect(() => {
       let storedTransactions = localStorage.getItem("transactions");
-      console.log(JSON.parse(storedTransactions));
+
       dispatch({
         type:'GET_TRANSACTIONS',
         payload: JSON.parse(storedTransactions)
@@ -39,7 +42,7 @@ export const GlobalProvider = ({ children }) => {
     }, [])
 
 
-    //global actions on state
+    //ACTIONS LOGIC
     function deleteTransaction(id) {
       dispatch({
         type: 'DELETE_TRANSACTION',
@@ -48,14 +51,29 @@ export const GlobalProvider = ({ children }) => {
     }
 
 
-    function addTransaction(transaction) {
-      
+    function addTransaction(transaction) {    
       dispatch({
         type: 'ADD_TRANSACTION',
         payload: transaction,
       })
     }
 
+    function toolAction(tool) {
+ 
+      dispatch({
+        type: 'TOOL_ACTION',
+        payload: tool.type,
+      })
+    }
+
+    function closeModal(modal) {
+      dispatch({
+        type: 'CLOSE_MODAL',
+        payload: modal.type,
+      })
+    }
+
+    //FILTERING LOGIC
     function dateFilter(date) {
 
       if(date.filterOn != '...') {
@@ -69,7 +87,7 @@ export const GlobalProvider = ({ children }) => {
         date.resetFilters = true;
       }
       dispatch({
-        type: 'FILTER_TRANSACTIONS',
+        type: 'DATE_FILTER_TRANSACTIONS',
         payload: date,
       })
     }
@@ -82,13 +100,25 @@ export const GlobalProvider = ({ children }) => {
       })
     }
 
+    function btnFilter(btn) { 
+      dispatch({
+        type: 'BTN_FILTER_TRANSACTIONS',
+        payload: btn,
+      })
+     }
+
     return (<GlobalContext.Provider value={{
         transactions: state.transactions,
         rangeOptions: state.rangeOptions,
+        tools:state.tools,
+        filters: state.filters,
         deleteTransaction: deleteTransaction,
         addTransaction: addTransaction,
+        toolAction: toolAction,
         dateFilter: dateFilter,
-        searchTransaction: searchTransaction
+        searchTransaction: searchTransaction,
+        btnFilter: btnFilter,
+        closeModal: closeModal
       }}>
         {children}
       </GlobalContext.Provider>);

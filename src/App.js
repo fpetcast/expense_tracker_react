@@ -1,17 +1,21 @@
 //styles
 import './assets/scss/main.css';
+//hooks
 //components
 import Header from './components/Header';
 import Balance from './components/Balance';
-import IncomeExpenses from './components/IncomeExpenses';
 import Transactions from './components/Transactions';
+import Filters from './components/Filters';
 import AddTransaction from './components/AddTransaction';
 import Search from './components/Search';
+import ToolBar from './components/ToolBar';
 //Global Provider
-import { GlobalProvider } from './context/GlobalState';
+import { GlobalProvider,GlobalContext} from './context/GlobalState';
+
 
 
 function App() {
+
   return (
     <div className="app-container">
       <GlobalProvider>
@@ -19,10 +23,11 @@ function App() {
         <div className="body-container">
           <Balance />
           <Search />
-          <IncomeExpenses />
+          <Filters />
           <Transactions />
-          <AddTransaction />
         </div>
+        <AddTransaction />
+        <ToolBar />
       </GlobalProvider>
     </div>
   );

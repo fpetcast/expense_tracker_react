@@ -1,0 +1,20 @@
+@import "../palette";
+
+.filters-container {
+ display: flex;
+ gap:1em;
+ justify-content: center;
+ margin-top: 1.5em;
+ .filter-btn {
+     font-size: 1rem;
+     background-color: $primary;
+     border: 0px;
+     border-radius: 20px;
+     color: white;
+     padding: 0.5em 1em;
+ }
+ .filter-btn.active {
+    background-color: white;
+    color: $primary;
+ }
+}
