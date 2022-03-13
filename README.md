@@ -1,17 +1,17 @@
 # Just a React Expense Tracker
 
-The project present a simple UI/UX guided to the simple aim to track economic balance and manage it
+The project present a simple UI/UX guided to the simple aim to track economic balance and manage it\
 
 ## Tool Bar
 
--Add Transaction
--Edit Transaction => update or delete
+-Add Transaction\
+-Edit Transaction => update or delete\
 
 ## Advanced Filtering
 
--Date period Filter select
--Income Filter button
--Expense Filter button
+-Date period Filter select\
+-Income Filter button\
+-Expense Filter button\
 
 ### `npm start`
 
