@@ -7,7 +7,7 @@ function Transactions() {
 
         const History = transactions.filter(transaction => transaction.filtered == true).map((transaction) =>
         <li key={transaction.id} className={transaction.amount > 0 ? "transaction plus" : "transaction minus"}>
-        <Transaction transaction={transaction} />
+        <Transaction transaction={transaction}/>
         </li>
         );
 

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose} from '@fortawesome/free-solid-svg-icons'
 
 function AddTransaction() {
-    const {addTransaction,tools, closeModal} = useContext(GlobalContext);
+    const {addTransaction,tools,closeModal} = useContext(GlobalContext);
 
 
     const titleInput = useRef(null);

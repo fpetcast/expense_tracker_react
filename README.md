@@ -5,13 +5,13 @@ The project present a simple UI/UX guided to the simple aim to track economic ba
 ## Tool Bar
 
 -Add Transaction\
--Edit Transaction => update or delete\
+-Edit Transaction => update or delete
 
 ## Advanced Filtering
 
 -Date period Filter select\
 -Income Filter button\
--Expense Filter button\
+-Expense Filter button
 
 ### `npm start`
 

@@ -16,6 +16,6 @@
     ],
     "tools" : [
         {"id": 1,"type": "add", "icon": "plus", "showModal":false},
-        {"id": 2,"type": "edit", "icon": "pen", "showModal":false}
+        {"id": 2,"type": "edit", "icon": "pen", "editView":false}
     ]
 }

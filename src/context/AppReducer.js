@@ -21,12 +21,19 @@ export default (state, action) => {
           transactions: [action.payload,...state.transactions]
         }
       case 'TOOL_ACTION':
-         console.log('TOOL_ACTION');
           return {
             ...state,
             tools: state.tools.map(tool => {
-              if (tool.type == action.payload && tool.type == 'add') {
+              if (tool.type === action.payload.type && tool.type === 'add') {
+                console.log('ADD_ACTION');
                 tool.showModal = true
+              }
+              if (tool.type === action.payload.type && tool.type === 'edit' && action.payload.edit == false) {
+                console.log('SHOW EDIT VIEW');
+                tool.editView = true
+              }else {
+                console.log('SHOW LIST VIEW');
+                tool.editView = false
               }
               return tool;
             })
@@ -36,7 +43,7 @@ export default (state, action) => {
          return {
            ...state,
            tools: state.tools.map(tool => {
-             if (tool.type == action.payload && tool.type == 'add') {
+             if (tool.type === action.payload && tool.type === 'add') {
                tool.showModal = false
              }
              return tool;
