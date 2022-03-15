@@ -1,38 +1,36 @@
 import React, {useContext} from "react";
 import { GlobalContext } from "../context/GlobalState";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlane} from '@fortawesome/free-solid-svg-icons'
+import { faPlane, faMoneyBill } from '@fortawesome/free-solid-svg-icons'
 
 function Transaction(props) {
-        const {deleteTransaction} = useContext(GlobalContext);
+        const {deleteTransaction,tools, categories} = useContext(GlobalContext);
+
 
         const transaction = props.transaction;
 
         const formatDate = (date) => {
-            return date.toString().substring(0, 10);
+            return date.toString();
         }
-
-        const categories = [
-            'travel'
-        ]
 
         function getIcon(category) { 
             switch (category) {
                 case 'travel':
                     return faPlane;
                     break;
+                case 'salary':
+                    return faMoneyBill;
+                    break;
                 default:
                     break;
             }
          }
 
-
-
         return(
             <div className="list-item">
                 <div className="t-info">
                 <div className="t-icon">
-                {categories.includes(transaction.category)  && <FontAwesomeIcon icon={getIcon(transaction.category)} className="t-category" /> 
+                {transaction.category && <FontAwesomeIcon icon={getIcon(transaction.category)} className="t-category" /> 
                 }
                 </div>
                 <div className="t-text">

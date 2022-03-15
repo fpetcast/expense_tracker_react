@@ -28,11 +28,12 @@ export default (state, action) => {
                 console.log('ADD_ACTION');
                 tool.showModal = true
               }
-              if (tool.type === action.payload.type && tool.type === 'edit' && action.payload.edit == false) {
-                console.log('SHOW EDIT VIEW');
+              if (tool.type === action.payload.type && tool.type === 'edit' && action.payload.icon === 'pen') {
+                console.log('EDIT_ACTION PEN');
                 tool.editView = true
-              }else {
-                console.log('SHOW LIST VIEW');
+              }
+              if (tool.type === action.payload.type && tool.type === 'edit' && action.payload.icon === 'list') {
+                console.log('EDIT_ACTION LIST');
                 tool.editView = false
               }
               return tool;
@@ -46,6 +47,9 @@ export default (state, action) => {
              if (tool.type === action.payload && tool.type === 'add') {
                tool.showModal = false
              }
+             if (tool.type === action.payload && tool.type === 'edit') {
+              tool.editView = false
+            }
              return tool;
            })
      }
@@ -99,6 +103,10 @@ export default (state, action) => {
                   } else {
                     transaction.filtered = false;
                   }
+                  break;
+                  case 'Remove':
+                    transaction.filtered = true;
+                    break;
                   default:
                     transaction.filter = true;
                     break;

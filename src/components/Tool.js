@@ -28,28 +28,16 @@ function Tool(props) {
         }
      }
 
-     function addAction(e) {
+     function triggerAction(e) {
+        console.log(tool.type);
         toolAction({
-            type: tool.type
+            type: tool.type,
+            icon: icon
         })
      }
 
-     function editAction(e) {
-         if(tool.editView) {
-            toolAction({
-                type: tool.type,
-                edit: false
-            })
-         }else {
-            toolAction({
-                type: tool.type,
-                edit: true
-            })
-         }
-     }
-
     return(
-        <button onClick={tool.type == 'edit' ? editAction : addAction} data-type={tool.type} data-edit={tool.editView ? true : false} className={"tool-btn " + tool.type}>
+        <button onClick={triggerAction} data-type={tool.type} data-edit={tool.editView ? true : false} className={"tool-btn " + tool.type}>
             <FontAwesomeIcon icon={tool.type == 'edit' ? getIcon(icon) : getIcon(tool.icon)} data-type={tool.type} className="tool-icon" data-edit={tool.editView ? true : false}></FontAwesomeIcon>
         </button>
     );

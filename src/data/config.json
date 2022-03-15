@@ -12,10 +12,21 @@
     ],
     "filters" : [
         {"id": 1,"type": "Income", "text": "Incomes"},
-        {"id": 2,"type": "Expense", "text": "Expenses"}
+        {"id": 2,"type": "Expense", "text": "Expenses"},
+        {"id": 3,"type": "Remove", "text": ""}
     ],
     "tools" : [
         {"id": 1,"type": "add", "icon": "plus", "showModal":false},
         {"id": 2,"type": "edit", "icon": "pen", "editView":false}
+    ],
+    "categories" : [
+        {"id": 0,"name": "Choose a category"},
+        {"id": 1,"name": "salary"},
+        {"id": 2,"name": "travel"},
+        {"id": 3,"name": "food"},
+        {"id": 4,"name": "clothes"},
+        {"id": 5,"name": "shopping"},
+        {"id": 6,"name": "gifts"},
+        {"id": 7,"name": "party"}
     ]
 }

@@ -3,7 +3,7 @@ import { GlobalContext } from "../context/GlobalState";
 import Transaction from "./Transaction";
 
 function Transactions() {
-        const {transactions} = useContext(GlobalContext);
+        const {transactions,tools} = useContext(GlobalContext);
 
         const History = transactions.filter(transaction => transaction.filtered == true).map((transaction) =>
         <li key={transaction.id} className={transaction.amount > 0 ? "transaction plus" : "transaction minus"}>
@@ -13,8 +13,8 @@ function Transactions() {
 
         return(
             <div className="transactions">
-                <h3>History</h3>
-                <ul className="history">
+                <h3 className="history-title">History</h3>
+                <ul className={tools[1].editView ? 'history editable' : 'history static'}>
                     {History}
                 </ul>
             </div>

@@ -1,8 +1,14 @@
 @import "../_palette.scss";
 .transactions {
+    margin-top: 2.5em;
+    .history-title {
+     margin-bottom: 0;
+     text-transform: uppercase;
+    }
     .history {
         list-style-type: none;
-        padding: 0;
+        padding-top: 1em;
+        padding-left: 0;
         display: flex;
         flex-direction: column;
         margin-bottom: 1em;
@@ -49,6 +55,20 @@
                 font-weight: 600;
                 text-align: center;
             }
+            .delete-btn {
+                display: none;
+                cursor: pointer;
+                background-color: #e74c3c;
+                border: 0;
+                color: #fff;
+                font-size: 20px;
+                padding: 3px 8px;
+                position: absolute;
+                top: 0;
+                right: 0;
+                transform: translateY(-100%);
+                transition: opacity 0.3s ease;
+              }
         }
         .transaction.plus {
             .list-item {
@@ -74,9 +94,17 @@
                 }
             }
         }
-      }
+    }
     
+    .history.editable {
+        gap: 2.5em;
+        .list-item {
 
+            .delete-btn {
+                display: block;
+              }
+        }
+    }
     
 
 }

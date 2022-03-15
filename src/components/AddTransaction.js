@@ -4,12 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose} from '@fortawesome/free-solid-svg-icons'
 
 function AddTransaction() {
-    const {addTransaction,tools,closeModal} = useContext(GlobalContext);
+    const {addTransaction,tools,closeModal, categories} = useContext(GlobalContext);
 
+    const cats = categories.map((cat,index) => 
+    <option key={index}>
+        {cat.name}
+    </option>);
 
     const titleInput = useRef(null);
-    const categoryInput = useRef(null);
+    // const categoryInput = useRef(null);
     const amountInput = useRef(null)
+    const categorySelect = useRef(null)
     
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
@@ -22,20 +27,46 @@ function AddTransaction() {
         })
     }
 
+    function validateTransaction(){
+        let errors = [];        
+
+        if(titleInput.current.value === "") {
+            errors.push('Title is invalid')
+        }
+        console.log(categorySelect.current.value);
+        if(categorySelect.current.value === "Choose a category") {
+            errors.push('Category is invalid')
+        }
+        if(amountInput.current.value == 0 && typeof(amountInput.current.value) !== 'number') {
+            console.log(amountInput.current.value);
+            errors.push('Amount is invalid')
+        }
+        console.table(errors);
+        if(errors.length === 0) {
+            console.log('VALID TRANSACTION');
+            return true
+        }else {
+            console.log('INVALID TRANSACTION');
+            return false
+        }
+    }
+
+
     function getTransaction(e) {
         e.preventDefault();
-        
-        addTransaction({
-            id: Math.floor(Math.random() * 100000000),
-            text: titleInput.current.value,
-            amount: parseInt(amountInput.current.value),
-            date: new Date(),
-            filtered: true,
-            category: categoryInput.current.value
-        })
-        closeModal({
-            type: tools[0].type
-        })
+        if(validateTransaction()){
+            addTransaction({
+                id: Math.floor(Math.random() * 100000000),
+                text: titleInput.current.value,
+                amount: parseInt(amountInput.current.value),
+                date: new Date().toLocaleDateString("it-IT"),
+                filtered: true,
+                category: categorySelect.current.value
+            })
+            closeModal({
+                type: tools[0].type
+            })
+        }
     }
 
     return(
@@ -51,16 +82,19 @@ function AddTransaction() {
                     </div>
                     <div className="form-control">
                         <label htmlFor="category">Category</label>
-                        <input ref={categoryInput} name="category" type="text" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Enter category..." />
+                        <select ref={categorySelect} name="category" className="category-select" onChange={(e) => setCategory(e.target.value)}>
+                            {cats}
+                        </select>
+                        {/* <input ref={categoryInput} name="category" type="text" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Enter category..." /> */}
                     </div>
                     <div className="form-control">
                         <label htmlFor="amount"
                             >Amount <br />
                             (negative - expense, positive - income)</label
                         >
-                        <input ref={amountInput} name="amount "type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter amount..." />
+                        <input ref={amountInput} name="amount "type="number" onChange={(e) => setAmount(e.target.value)} placeholder="Enter amount..." />
                     </div>
-                    <button className="btn" onClick={getTransaction}>Add transaction</button>
+                    <button className="submit-btn" onClick={getTransaction}>Add transaction</button>
                 </form>
                 </div>
             </div>

@@ -62,7 +62,7 @@ export const GlobalProvider = ({ children }) => {
  
       dispatch({
         type: 'TOOL_ACTION',
-        payload: tool.type,
+        payload: tool,
       })
     }
 
@@ -111,6 +111,7 @@ export const GlobalProvider = ({ children }) => {
         transactions: state.transactions,
         rangeOptions: state.rangeOptions,
         tools:state.tools,
+        categories:state.categories,
         filters: state.filters,
         deleteTransaction: deleteTransaction,
         addTransaction: addTransaction,
