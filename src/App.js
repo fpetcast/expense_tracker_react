@@ -1,5 +1,7 @@
 //styles
 import './assets/scss/main.css';
+//libraries
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 //hooks
 //components
 import Header from './components/Header';
