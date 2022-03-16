@@ -10,7 +10,7 @@ import AddTransaction from './components/AddTransaction';
 import Search from './components/Search';
 import ToolBar from './components/ToolBar';
 //Global Provider
-import { GlobalProvider,GlobalContext} from './context/GlobalState';
+import { GlobalProvider} from './context/GlobalState';
 
 
 

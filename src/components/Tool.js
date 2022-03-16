@@ -1,4 +1,4 @@
-import  React , {useContext, useState, useRef}  from "react";
+import  React , {useContext}  from "react";
 import { GlobalContext } from "../context/GlobalState";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare , faPlus, faList} from '@fortawesome/free-solid-svg-icons'
@@ -16,13 +16,10 @@ function Tool(props) {
         switch (type) {
             case 'pen':
                 return faPenToSquare;
-                break;
             case 'plus':
                 return faPlus
-                break;
             case 'list':
                 return faList
-                break;
             default:
                 break;
         }
@@ -38,7 +35,7 @@ function Tool(props) {
 
     return(
         <button onClick={triggerAction} data-type={tool.type} data-edit={tool.editView ? true : false} className={"tool-btn " + tool.type}>
-            <FontAwesomeIcon icon={tool.type == 'edit' ? getIcon(icon) : getIcon(tool.icon)} data-type={tool.type} className="tool-icon" data-edit={tool.editView ? true : false}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={tool.type === 'edit' ? getIcon(icon) : getIcon(tool.icon)} data-type={tool.type} className="tool-icon" data-edit={tool.editView ? true : false}></FontAwesomeIcon>
         </button>
     );
     

@@ -1,4 +1,4 @@
-import  React , {useContext, useRef}  from "react";
+import  React , {useContext}  from "react";
 import Tool from './Tool'
 import { GlobalContext } from "../context/GlobalState";
 
@@ -9,7 +9,7 @@ function ToolBar() {
         <div className="tool-bar">
             {tools.map((tool,index) => 
                 <div key={index} className="tool">
-                  <Tool tool={tool} icon={tool.type == 'edit' && tool.editView == false ? 'pen' : 'list'}/>
+                  <Tool tool={tool} icon={tool.type === 'edit' && tool.editView === false ? 'pen' : 'list'}/>
                 </div>
             )}
         </div>

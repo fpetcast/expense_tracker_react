@@ -1,9 +1,9 @@
-import  React , {useContext, useState}  from "react";
+import  React , {useContext}  from "react";
 import { GlobalContext } from "../context/GlobalState";
 
 function Balance() {
     const {transactions, rangeOptions, dateFilter} = useContext(GlobalContext);
-    const [range, setRange] = useState('');
+    // const [range, setRange] = useState('');
 
    
 

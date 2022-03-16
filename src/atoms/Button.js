@@ -1,16 +1,14 @@
-import  React, {useContext, useState}  from "react";
+import  React, {useContext}  from "react";
 import { GlobalContext } from "../context/GlobalState";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilterCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
 function Button(props) {
-    const [active, setActive] = useState(false);
     const {btnFilter} = useContext(GlobalContext);
 
     const className = props.class;
     const btnText = props.text;
     const type = props.type;
-    const icon = props.icon;
 
     function switchFilter(e) {  
         btnFilter({

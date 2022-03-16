@@ -1,4 +1,4 @@
-import React, {useState, useContext, useRef, useEffect} from "react";
+import React, {useState, useContext, useRef} from "react";
 import { GlobalContext } from "../context/GlobalState";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose} from '@fortawesome/free-solid-svg-icons'
@@ -19,7 +19,6 @@ function AddTransaction() {
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
     const [amount, setAmount] = useState(0);
-    const [visible,setVisible] = useState(false);
     
     function close() { 
         closeModal({
