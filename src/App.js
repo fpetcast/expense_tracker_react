@@ -1,18 +1,14 @@
 //styles
 import './assets/scss/main.css';
 //libraries
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 //hooks
 //components
 import Header from './components/Header';
-import Balance from './components/Balance';
-import Transactions from './components/Transactions';
-import Filters from './components/Filters';
-import AddTransaction from './components/AddTransaction';
-import Search from './components/Search';
-import ToolBar from './components/ToolBar';
+import Tracker from './components/Tracker';
 //Global Provider
 import { GlobalProvider,GlobalContext} from './context/GlobalState';
+
 
 
 
@@ -22,14 +18,11 @@ function App() {
     <div className="app-container">
       <GlobalProvider>
         <Header />
-        <div className="body-container">
-          <Balance />
-          <Search />
-          <Filters />
-          <Transactions />
-        </div>
-        <AddTransaction />
-        <ToolBar />
+        <BrowserRouter>
+        <Routes>
+          <Route path="/tracker" element={<Tracker />} />
+        </Routes>
+        </BrowserRouter>
       </GlobalProvider>
     </div>
   );
