@@ -32,10 +32,16 @@ export const GlobalProvider = ({ children }) => {
     useEffect(() => {
       let storedTransactions = localStorage.getItem("transactions");
 
+      if(storedTransactions){
       dispatch({
         type:'GET_TRANSACTIONS',
         payload: JSON.parse(storedTransactions)
-      })
+      })}else{
+        dispatch({
+          type:'GET_TRANSACTIONS',
+          payload: data.transactions
+        })
+      }
       return () => {
         
       }
